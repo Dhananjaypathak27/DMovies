@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_navigation"
+    app:startDestination="@id/searchMovieFragment">
+
+    <fragment
+        android:id="@+id/searchMovieFragment"
+        android:name="com.pixelveda.dmovies.presentation.ui.searchPage.SearchMovieFragment"
+        android:label="fragment_search_movie"
+        tools:layout="@layout/fragment_search_movie" >
+        <action
+            android:id="@+id/action_searchMovieFragment_to_bookMarkListPageFragment"
+            app:destination="@id/bookMarkListPageFragment" />
+        <action
+            android:id="@+id/action_searchMovieFragment_to_movieDetailPageFragment"
+            app:destination="@id/movieDetailPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookMarkListPageFragment"
+        android:name="com.pixelveda.dmovies.presentation.ui.bookMarkPage.BookMarkListPageFragment"
+        android:label="fragment_book_mark_list_page"
+        tools:layout="@layout/fragment_book_mark_list_page" />
+    <fragment
+        android:id="@+id/movieDetailPageFragment"
+        android:name="com.pixelveda.dmovies.presentation.ui.movieDetailPage.MovieDetailPageFragment"
+        android:label="fragment_movie_detail_page"
+        tools:layout="@layout/fragment_movie_detail_page" />
+</navigation>
