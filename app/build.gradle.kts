@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     kotlin("kapt")
+    alias(libs.plugins.android.safe.args)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -63,4 +65,8 @@ dependencies {
 
 //    //picasso
     implementation(libs.picasso)
+
+        //safe args
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 }

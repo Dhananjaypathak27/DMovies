@@ -1,9 +1,12 @@
 package com.pixelveda.dmovies.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import com.pixelveda.dmovies.data.dto.MovieDto
 import com.pixelveda.dmovies.data.dto.MovieDto.Rating
 import kotlin.String
 
+@Parcelize
 data class Movie(
     val actors: String?,
     val awards: String?,
@@ -23,11 +26,13 @@ data class Movie(
     val year: String?,
     val error: String?,
     val response: String?
-){
+): Parcelable
+{
+    @Parcelize
     data class Rating(
         val source: String?,
         val value: String?
-    )
+    ): Parcelable
 }
 
 fun MovieDto.toMovie(): Movie {

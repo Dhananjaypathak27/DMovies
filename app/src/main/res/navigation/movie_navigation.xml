@@ -15,16 +15,29 @@
             app:destination="@id/bookMarkListPageFragment" />
         <action
             android:id="@+id/action_searchMovieFragment_to_movieDetailPageFragment"
-            app:destination="@id/movieDetailPageFragment" />
+            app:destination="@id/movieDetailPageFragment" >
+        </action>
     </fragment>
     <fragment
         android:id="@+id/bookMarkListPageFragment"
         android:name="com.pixelveda.dmovies.presentation.ui.bookMarkPage.BookMarkListPageFragment"
         android:label="fragment_book_mark_list_page"
-        tools:layout="@layout/fragment_book_mark_list_page" />
+        tools:layout="@layout/fragment_book_mark_list_page" >
+        <action
+            android:id="@+id/action_bookMarkListPageFragment_to_movieDetailPageFragment"
+            app:destination="@id/movieDetailPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/movieDetailPageFragment"
         android:name="com.pixelveda.dmovies.presentation.ui.movieDetailPage.MovieDetailPageFragment"
         android:label="fragment_movie_detail_page"
-        tools:layout="@layout/fragment_movie_detail_page" />
+        tools:layout="@layout/fragment_movie_detail_page" >
+
+        <argument
+            android:name="movieObj"
+            app:argType="com.pixelveda.dmovies.domain.model.Movie"
+            />
+
+    </fragment>
+
 </navigation>

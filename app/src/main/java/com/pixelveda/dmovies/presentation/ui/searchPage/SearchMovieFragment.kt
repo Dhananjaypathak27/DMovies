@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.pixelveda.dmovies.databinding.FragmentSearchMovieBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -34,25 +34,33 @@ class SearchMovieFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-       lifecycleScope.launch {
-           viewModel.movieState.collectLatest {state->
-               if(state.isLoading){
-                   binding.progressBar.visibility = View.VISIBLE
-               }
-               if(state.error.isNotBlank()){
-                   binding.progressBar.visibility = View.GONE
-               }
-               state.movie?.let {
-                   binding.progressBar.visibility = View.GONE
-                   if(it.response == "True"){
-                       binding.text.text = it.title
-                   }else{
-                       binding.text.text = it.error
-                   }
-               }
+        lifecycleScope.launch {
+            viewModel.movieState.collectLatest { state ->
+                if (state.isLoading) {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                if (state.error.isNotBlank()) {
+                    binding.progressBar.visibility = View.GONE
+                }
+                state.movie?.let {
+                    binding.progressBar.visibility = View.GONE
+                    if (it.response == "True") {
+                        binding.text.text = it.title
+                    } else {
+                        binding.text.text = it.error
+                    }
+                }
+            }
+        }
 
-               }
-           }
-       }
+        binding.text.setOnClickListener {
+            val action =
+                SearchMovieFragmentDirections.actionSearchMovieFragmentToMovieDetailPageFragment(
+                    viewModel.movieState.value.movie!!
+                )
+            findNavController().navigate(action)
+        }
 
     }
+
+}
