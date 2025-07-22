@@ -61,6 +61,12 @@ class SearchMovieFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        binding.ivBookMark.setOnClickListener {
+            val action =
+                SearchMovieFragmentDirections.actionSearchMovieFragmentToBookMarkListPageFragment()
+            findNavController().navigate(action)
+        }
+
     }
 
 }

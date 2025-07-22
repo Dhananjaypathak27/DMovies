@@ -1,5 +1,6 @@
 package com.pixelveda.dmovies.domain.useCases
 
+import android.app.Application
 import com.pixelveda.dmovies.common.Resource
 import com.pixelveda.dmovies.data.repository.MovieRepositoryImpl
 import com.pixelveda.dmovies.domain.model.Movie
@@ -10,10 +11,10 @@ import kotlinx.coroutines.flow.flow
 import okio.IOException
 import retrofit2.HttpException
 
-class GetMovieUseCase {
+class GetMovieUseCase(context: Application) {
 
     private val repository: MovieRepository by lazy {
-        MovieRepositoryImpl()
+        MovieRepositoryImpl(context)
     }
 
     operator fun invoke(query:String,apiKey:String): Flow<Resource<Movie>> =  flow {

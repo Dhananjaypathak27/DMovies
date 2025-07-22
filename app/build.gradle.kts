@@ -63,10 +63,16 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
 
-//    //picasso
+    //picasso
     implementation(libs.picasso)
 
-        //safe args
+    //safe args
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    //room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+
+
 }

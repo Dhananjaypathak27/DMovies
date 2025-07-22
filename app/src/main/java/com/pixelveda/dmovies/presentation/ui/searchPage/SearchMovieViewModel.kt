@@ -1,6 +1,8 @@
 package com.pixelveda.dmovies.presentation.ui.searchPage
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pixelveda.dmovies.common.Resource
@@ -18,10 +20,10 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
 
 private val TAG = "SearchMovieViewModel"
-class SearchMovieViewModel: ViewModel() {
+class SearchMovieViewModel(val context: Application): AndroidViewModel(context) {
 
     private val getMovieUseCase by lazy {
-        GetMovieUseCase()
+        GetMovieUseCase(context)
     }
 
     val searchText = MutableStateFlow("")

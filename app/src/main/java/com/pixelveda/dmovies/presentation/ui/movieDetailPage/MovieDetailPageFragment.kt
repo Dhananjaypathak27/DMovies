@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.pixelveda.dmovies.R
 import com.pixelveda.dmovies.databinding.FragmentMovieDetailPageBinding
 
 class MovieDetailPageFragment : Fragment() {
     lateinit var binding: FragmentMovieDetailPageBinding
+    val viewModel by viewModels<MovieDetailViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,8 @@ class MovieDetailPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
         val movie = arguments?.let {
             MovieDetailPageFragmentArgs.fromBundle(it).movieObj
@@ -32,6 +36,12 @@ class MovieDetailPageFragment : Fragment() {
 
         movie?.let {
             binding.text.text = it.title
+        }
+
+        binding.ivBookMark.setOnClickListener {
+            movie?.let {
+                viewModel.saveMovieToDb(it)
+            }
         }
     }
 }

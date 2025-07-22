@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pixelveda.dmovies.databinding.FragmentBookMarkListPageBinding
 import com.pixelveda.dmovies.domain.model.Movie
@@ -13,6 +14,7 @@ import com.pixelveda.dmovies.domain.model.Movie
 class BookMarkListPageFragment : Fragment(),BookMarkListListener,BookMarkListDeleteListener {
     lateinit var binding: FragmentBookMarkListPageBinding
     private val viewModel by viewModels<BookMarkListViewModel>()
+     var list = mutableListOf<Movie>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,7 @@ class BookMarkListPageFragment : Fragment(),BookMarkListListener,BookMarkListDel
         binding.lifecycleOwner = this
         binding.viewModel = this.viewModel
 
-        val list = mutableListOf<Movie>()
+         list = mutableListOf<Movie>()
         list.add(Movie(
             title = "title1",
             actors = "",
@@ -43,8 +45,7 @@ class BookMarkListPageFragment : Fragment(),BookMarkListListener,BookMarkListDel
             imdbRating = "",
             imdbVotes = "",
             language = "",
-            poster = "",
-            ratings = listOf(),
+            poster = "https://media.cnn.com/api/v1/images/stellar/prod/211227135008-02-the-batman-trailer.jpg?c=16x9&q=h_833,w_1480,c_fill",
             runtime = "",
             type = "",
             writer = "",
@@ -63,8 +64,7 @@ class BookMarkListPageFragment : Fragment(),BookMarkListListener,BookMarkListDel
             imdbRating = "",
             imdbVotes = "",
             language = "",
-            poster = "",
-            ratings = listOf(),
+            poster = "https://media.cnn.com/api/v1/images/stellar/prod/211227135008-02-the-batman-trailer.jpg?c=16x9&q=h_833,w_1480,c_fill",
             runtime = "",
             type = "",
             writer = "",
@@ -83,7 +83,10 @@ class BookMarkListPageFragment : Fragment(),BookMarkListListener,BookMarkListDel
     }
 
     override fun onItemClick(pos: Int) {
-
+        val action = BookMarkListPageFragmentDirections.actionBookMarkListPageFragmentToMovieDetailPageFragment(
+            list[pos]
+        )
+        findNavController().navigate(action)
     }
 
     override fun onDeleteIconClick(pos: Int) {
