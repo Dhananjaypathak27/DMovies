@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.pixelveda.dmovies.R
 import com.pixelveda.dmovies.common.Utils
 import com.pixelveda.dmovies.databinding.FragmentMovieDetailPageBinding
+import com.squareup.picasso.Picasso
 
 class MovieDetailPageFragment : Fragment() {
     lateinit var binding: FragmentMovieDetailPageBinding
@@ -37,6 +38,14 @@ class MovieDetailPageFragment : Fragment() {
 
         movie?.let {
             binding.text.text = it.title
+            Picasso.get()
+                .load(it.poster)
+                .error(R.drawable.ic_launcher_background)
+                .into(binding.ivPoster)
+
+            binding.tvReleaseData.text = it.country
+            binding.tvRunTime.text = it.imdbRating
+            binding.tvGenre.text = it.genre
         }
 
         binding.ivBookMark.setOnClickListener {
