@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.pixelveda.dmovies.R
 import com.pixelveda.dmovies.databinding.FragmentSearchMovieBinding
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -38,22 +40,38 @@ class SearchMovieFragment : Fragment() {
             viewModel.movieState.collectLatest { state ->
                 if (state.isLoading) {
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.llSuccess.visibility = View.GONE
+                    binding.tvError.visibility = View.GONE
                 }
                 if (state.error.isNotBlank()) {
                     binding.progressBar.visibility = View.GONE
+                    binding.llSuccess.visibility = View.GONE
+                    binding.tvError.visibility = View.VISIBLE
                 }
                 state.movie?.let {
                     binding.progressBar.visibility = View.GONE
                     if (it.response == "True") {
-                        binding.text.text = it.title
+                        binding.llSuccess.visibility = View.VISIBLE
+                        binding.tvTitle.text = it.title
+                        binding.tvRunTime.text = it.runtime
+                        binding.tvImdb.text = "${it.imdbRating} + Ratings"
+
+                        Picasso.get()
+                            .load(it.poster)
+                            .error(R.drawable.ic_launcher_background)
+                            .into(binding.bookMarkItemImage)
+
+                        binding.tvError.visibility = View.GONE
                     } else {
-                        binding.text.text = it.error
+                        binding.tvError.text = it.error
+                        binding.llSuccess.visibility = View.GONE
+                        binding.tvError.visibility = View.VISIBLE
                     }
                 }
             }
         }
 
-        binding.text.setOnClickListener {
+        binding.llSuccess.setOnClickListener {
             val action =
                 SearchMovieFragmentDirections.actionSearchMovieFragmentToMovieDetailPageFragment(
                     viewModel.movieState.value.movie!!
