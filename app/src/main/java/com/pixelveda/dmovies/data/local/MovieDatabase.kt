@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.pixelveda.dmovies.data.dto.DBMovieDto
 
-@Database(entities = [DBMovieDto::class], version = 1)
+@Database(entities = [DBMovieDto::class], version = 1, exportSchema = false)
 abstract class MovieDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
 }

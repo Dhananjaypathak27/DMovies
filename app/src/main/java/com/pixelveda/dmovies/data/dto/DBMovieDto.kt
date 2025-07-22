@@ -9,7 +9,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity(tableName = "movie_table")
-@TypeConverters(Converters::class)
 data class DBMovieDto(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,

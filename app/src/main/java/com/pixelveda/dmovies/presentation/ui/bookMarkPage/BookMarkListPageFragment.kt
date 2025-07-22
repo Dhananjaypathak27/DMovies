@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pixelveda.dmovies.databinding.FragmentBookMarkListPageBinding
 import com.pixelveda.dmovies.domain.model.Movie
+import kotlinx.coroutines.launch
 
 class BookMarkListPageFragment : Fragment(),BookMarkListListener,BookMarkListDeleteListener {
     lateinit var binding: FragmentBookMarkListPageBinding
@@ -33,45 +35,22 @@ class BookMarkListPageFragment : Fragment(),BookMarkListListener,BookMarkListDel
         binding.lifecycleOwner = this
         binding.viewModel = this.viewModel
 
-         list = mutableListOf<Movie>()
-        list.add(Movie(
-            title = "title1",
-            actors = "",
-            awards = "",
-            boxOffice = "",
-            country = "",
-            director = "",
-            genre = "",
-            imdbRating = "",
-            imdbVotes = "",
-            language = "",
-            poster = "https://media.cnn.com/api/v1/images/stellar/prod/211227135008-02-the-batman-trailer.jpg?c=16x9&q=h_833,w_1480,c_fill",
-            runtime = "",
-            type = "",
-            writer = "",
-            year = "",
-            error = "",
-            response = ""
-        ))
-        list.add(Movie(
-            title = "title2",
-            actors = "",
-            awards = "",
-            boxOffice = "",
-            country = "",
-            director = "",
-            genre = "",
-            imdbRating = "",
-            imdbVotes = "",
-            language = "",
-            poster = "https://media.cnn.com/api/v1/images/stellar/prod/211227135008-02-the-batman-trailer.jpg?c=16x9&q=h_833,w_1480,c_fill",
-            runtime = "",
-            type = "",
-            writer = "",
-            year = "",
-            error = "",
-            response = ""
-        ))
+        lifecycleScope.launch {
+            viewModel.moviesListState.collect { state ->
+               if(state.isLoading){
+                 //Show progress bar
+                }
+                if(state.error.isNotBlank()){
+                    //show error
+                }
+                if(state.movies.isNotEmpty()){
+                    list.clear()
+                    list.addAll(state.movies)
+                    binding.recyclerView.adapter?.notifyDataSetChanged()
+                }
+
+            }
+        }
 
         binding.recyclerView.apply {
             adapter = BookMarkAdapter(list,this@BookMarkListPageFragment,this@BookMarkListPageFragment)

@@ -71,3 +71,25 @@ fun Movie.toMovieDBDTO(): DBMovieDto {
         response = response,
     )
 }
+
+fun DBMovieDto.toMovie(): Movie {
+    return Movie(
+        actors = actors,
+        awards = awards,
+        boxOffice = boxOffice,
+        country = country,
+        director = director,
+        genre = genre,
+        imdbRating = imdbRating,
+        imdbVotes = imdbVotes,
+        language = language,
+        poster = poster,
+        title = title,
+        runtime = runtime,
+        type = type,
+        writer = writer,
+        year = year,
+        error = error,
+        response = response
+    )
+}
