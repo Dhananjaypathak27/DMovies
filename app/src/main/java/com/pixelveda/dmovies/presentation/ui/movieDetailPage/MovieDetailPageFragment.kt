@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.pixelveda.dmovies.R
+import com.pixelveda.dmovies.common.Utils
 import com.pixelveda.dmovies.databinding.FragmentMovieDetailPageBinding
 
 class MovieDetailPageFragment : Fragment() {
@@ -40,6 +41,7 @@ class MovieDetailPageFragment : Fragment() {
 
         binding.ivBookMark.setOnClickListener {
             movie?.let {
+                Utils.defaultDialog(requireContext(),"Movie Saved","Movie Saved Successfully")
                 viewModel.saveMovieToDb(it)
             }
         }

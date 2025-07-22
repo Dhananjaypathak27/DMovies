@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pixelveda.dmovies.common.Utils
 import com.pixelveda.dmovies.databinding.FragmentBookMarkListPageBinding
 import com.pixelveda.dmovies.domain.model.Movie
 import kotlinx.coroutines.launch
@@ -69,6 +70,6 @@ class BookMarkListPageFragment : Fragment(),BookMarkListListener,BookMarkListDel
     }
 
     override fun onDeleteIconClick(pos: Int) {
-        TODO("Not yet implemented")
+        Utils.defaultDialog(requireContext(),"Delete Dialog","This Feature is currently not available")
     }
 }
