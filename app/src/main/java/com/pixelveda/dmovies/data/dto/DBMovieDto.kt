@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import kotlinx.parcelize.Parcelize
 
-@Parcelize
 @Entity(tableName = "movie_table")
 data class DBMovieDto(
     @PrimaryKey(autoGenerate = true)
@@ -29,4 +28,4 @@ data class DBMovieDto(
     val year: String?,
     val error: String?,
     val response: String?
-): Parcelable
+)
