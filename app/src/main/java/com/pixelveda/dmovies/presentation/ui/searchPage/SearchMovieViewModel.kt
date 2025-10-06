@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pixelveda.dmovies.common.Resource
 import com.pixelveda.dmovies.domain.useCases.GetMovieUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -18,13 +19,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
+import javax.inject.Inject
 
-private val TAG = "SearchMovieViewModel"
-class SearchMovieViewModel(val context: Application): AndroidViewModel(context) {
+@HiltViewModel
+class SearchMovieViewModel @Inject constructor(private val getMovieUseCase: GetMovieUseCase): ViewModel() {
 
-    private val getMovieUseCase by lazy {
-        GetMovieUseCase(context)
-    }
+    private val TAG = "SearchMovieViewModel"
+
 
     val searchText = MutableStateFlow("")
 

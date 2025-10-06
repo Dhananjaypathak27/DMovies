@@ -11,9 +11,11 @@ import androidx.navigation.fragment.findNavController
 import com.pixelveda.dmovies.R
 import com.pixelveda.dmovies.databinding.FragmentSearchMovieBinding
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class SearchMovieFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchMovieBinding

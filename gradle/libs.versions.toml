@@ -16,6 +16,7 @@ picasso = "2.8"
 retrofit = "2.9.0"
 navigation = "2.7.7"
 room = "2.7.2"
+hilt = "2.52"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -34,7 +35,8 @@ picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
-
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
@@ -43,4 +45,5 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-safe-args = { id = "androidx.navigation.safeargs", version = "2.7.7" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 

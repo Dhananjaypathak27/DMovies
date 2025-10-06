@@ -2,21 +2,28 @@ package com.pixelveda.dmovies.presentation.ui.bookMarkPage
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pixelveda.dmovies.common.Resource
 import com.pixelveda.dmovies.domain.useCases.GetAllMoviesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
+import javax.inject.Inject
 
+@HiltViewModel
+class BookMarkListViewModel @Inject constructor(private val getAllMoviesUseCase: GetAllMoviesUseCase): ViewModel() {
 
-class BookMarkListViewModel(val context: Application): AndroidViewModel(context) {
+//    private val getAllMoviesUseCase by lazy {
+//        GetAllMoviesUseCase(context = application)
+//    }
 
-    private val getAllMoviesUseCase by lazy {
-        GetAllMoviesUseCase(context)
-    }
+//    @Inject
+//    private lateinit var getAllMoviesUseCase: GetAllMoviesUseCase
 
     private val _moviesListState = MutableStateFlow(MovieListState())
     val moviesListState = _moviesListState.asStateFlow()

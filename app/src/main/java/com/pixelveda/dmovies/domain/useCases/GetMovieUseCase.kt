@@ -10,12 +10,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okio.IOException
 import retrofit2.HttpException
+import javax.inject.Inject
 
-class GetMovieUseCase(context: Application) {
-
-    private val repository: MovieRepository by lazy {
-        MovieRepositoryImpl(context)
-    }
+class GetMovieUseCase @Inject constructor(private val repository: MovieRepository) {
+//
+//    private val repository: MovieRepository by lazy {
+//        MovieRepositoryImpl()
+//    }
 
     operator fun invoke(query:String,apiKey:String): Flow<Resource<Movie>> =  flow {
         try {

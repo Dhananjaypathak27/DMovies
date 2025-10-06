@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.pixelveda.dmovies.common.Utils
 import com.pixelveda.dmovies.databinding.FragmentBookMarkListPageBinding
 import com.pixelveda.dmovies.domain.model.Movie
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class BookMarkListPageFragment : Fragment(),BookMarkListListener,BookMarkListDeleteListener {
     lateinit var binding: FragmentBookMarkListPageBinding
     private val viewModel by viewModels<BookMarkListViewModel>()

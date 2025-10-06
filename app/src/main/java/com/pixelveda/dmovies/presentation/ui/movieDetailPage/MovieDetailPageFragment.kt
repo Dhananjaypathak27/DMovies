@@ -10,7 +10,9 @@ import com.pixelveda.dmovies.R
 import com.pixelveda.dmovies.common.Utils
 import com.pixelveda.dmovies.databinding.FragmentMovieDetailPageBinding
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MovieDetailPageFragment : Fragment() {
     lateinit var binding: FragmentMovieDetailPageBinding
     val viewModel by viewModels<MovieDetailViewModel>()
